@@ -1,0 +1,11 @@
+server:
+  port: 8889
+
+spring:
+  application:
+      name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/Megha867/config-repo
