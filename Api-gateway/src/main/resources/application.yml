@@ -1,6 +1,5 @@
 server:
   port: 8085
-
 eureka:
   client:
     register-with-eureka: true
@@ -10,6 +9,8 @@ eureka:
   instance:
     prefer-ip-address: true
 spring:
+  config:
+    import: optional:configserver:http://localhost:8889
   application:
     name: API-GATEWAY
   cloud:
@@ -40,7 +41,3 @@ spring:
             predicates[0]:
               name: Path
               args[pattern]: /rating/**
-
-
-jwt:
-  secret: a8df73hF9s9s8df9sdf89sdf89sdf98sdf98sd

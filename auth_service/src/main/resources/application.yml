@@ -1,0 +1,38 @@
+server:
+  port: 8086
+
+#spring:security:user:name:meghaadmin
+#spring:security:user:password:passwordadmin
+
+spring:
+  application:
+    name: AUTH-SERVICE
+  datasource:
+    url: jdbc:mysql://localhost:3306/rental_app
+    username: root
+    password: Saanvi@1510
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        ddl-auto: update
+    show-sql: true
+  config:
+    import: optional:configserver:http://localhost:8889
+
+
+#eureka
+eureka:
+  client:
+  register-with-eureka: true
+  fetch-registry: true
+  instance:
+    prefer-ip-address: true
+
+#will make instance register to Eureka server with IP address:
+#You do not need to provide IP address in any configuration as that will be automatically picked up from Eureka
+  service-url:
+    defaultzone: http://localhost:8761/eureka
+jwt:
+  expiration: 900000

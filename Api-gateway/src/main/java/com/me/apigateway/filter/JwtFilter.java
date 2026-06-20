@@ -23,7 +23,7 @@ import java.security.Key;
 public class JwtFilter implements GlobalFilter {
 
     @Value("${jwt.secret}")
-    private static String SECRET;
+    private String SECRET;
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
@@ -60,13 +60,12 @@ public class JwtFilter implements GlobalFilter {
         return exchange.getResponse().writeWith(Mono.just(buffer));
     }
 
-    public static Claims validateToken(String token) {
+    public Claims validateToken(String token) {
         log.info("Before validate token");
 
         try {
             Claims claims =  Jwts.parserBuilder()
-                    .setSigningKey(Keys.hmacShaKeyFor(
-                            SECRET.getBytes(StandardCharsets.UTF_8)))
+                    .setSigningKey(Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8)))
                     .build()
                     .parseClaimsJws(token)
                     .getBody();
