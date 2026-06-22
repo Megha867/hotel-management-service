@@ -16,7 +16,7 @@ import com.me.rating_service.entities.Rating;
 import com.me.rating_service.services.RatingService;
 
 @RestController
-@RequestMapping("/rating")
+@RequestMapping("/v1/rating")
 public class RatingController {
 	
 	@Autowired

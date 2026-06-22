@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/auth/v1")
 public class AuthServiceController {
 
     private static final Logger logger = LoggerFactory.getLogger(AuthServiceController.class);

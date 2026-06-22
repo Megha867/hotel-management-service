@@ -28,16 +28,16 @@ spring:
             uri: lb://USER-SERVICE
             predicates[0]:
               name: Path
-              args[pattern]: /user/**
+              args[pattern]: /v1/user/**
           routes[2]:
             id: HOTEL-SERVICE
             uri: lb://HOTEL-SERVICE
             predicates[0]:
               name: Path
-              args[pattern]: /hotel/**
+              args[pattern]: /v1/hotel/**
           routes[3]:
             id: RATING-SERVICE
             uri: lb://RATING-SERVICE
             predicates[0]:
               name: Path
-              args[pattern]: /rating/**
+              args[pattern]: /v1/rating/**

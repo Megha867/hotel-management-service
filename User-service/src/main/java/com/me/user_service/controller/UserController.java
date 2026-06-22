@@ -17,7 +17,7 @@ import com.me.user_service.entities.User;
 import com.me.user_service.services.UserService;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/v1/user")
 public class UserController {
 	
 	@Autowired

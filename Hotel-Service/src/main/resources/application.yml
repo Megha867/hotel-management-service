@@ -1,0 +1,49 @@
+server:
+  port: 8082
+
+#database
+spring:
+  application:
+    name: HOTEL-SERVICE
+  datasource:
+    url: jdbc:mysql://localhost:3306/microservice_user
+    username: root
+    password: Saanvi@1510
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        ddl-auto: update
+    show-sql: true
+
+#eureka
+eureka:
+  client:
+  register-with-eureka: true
+  fetch-registry: true
+  instance:
+    prefer-ip-address: true
+
+  #will make instance register to Eureka server with IP address:
+  #You do not need to provide IP address in any configuration as that will be automatically picked up from Eureka
+  service-url:
+    defaultzone: http://localhost:8761/eureka
+
+logging:
+  level:
+    root: "info"
+  pattern:
+    console: "%d{yyyy-MM-dd'T'HH:mm:ss'Z'} %p [hotel] %X{correlationId} %X{traceId} %X{userId} %m %ex%n"
+
+
+      #{"timestamp":"%d{yyyy-MM-dd'T'HH:mm:ss'Z'}",
+    #"level":"%p",
+        #"service":"payment",
+         #"traceId":"%X{traceId}",
+         #"userId":"%X{userId}",
+         #"message":"%m",
+        #"error":"%ex"}
+
+
+

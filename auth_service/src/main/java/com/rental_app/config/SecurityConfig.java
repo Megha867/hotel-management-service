@@ -44,7 +44,7 @@ public class SecurityConfig {
         http.cors(cors -> {})
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                    .requestMatchers("/auth/login").permitAll()
+                    .requestMatchers("/auth/v1/login").permitAll()
                     .anyRequest().authenticated()
                 )
                 .httpBasic(httpBasic -> httpBasic.disable()) // disable basic auth popup

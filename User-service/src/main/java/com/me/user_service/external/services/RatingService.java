@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 @FeignClient(name="RATING-SERVICE")
 public interface RatingService {
 
-	@GetMapping("/rating/user/{user_id}")
+	@GetMapping("/v1/rating/user/{user_id}")
 	List<Rating> getListOfRatings(@PathVariable String user_id);
 	
-	@PostMapping("/rating")
+	@PostMapping("/v1/rating")
 	Rating createRating(Rating rating);
 }

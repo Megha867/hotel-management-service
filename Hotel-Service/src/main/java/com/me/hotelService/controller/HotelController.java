@@ -14,7 +14,7 @@ import com.me.hotelService.services.HotelService;
 
 @RestController
 @Slf4j
-@RequestMapping("/hotel")
+@RequestMapping("/v1/hotel")
 public class HotelController {
 
 	@Autowired

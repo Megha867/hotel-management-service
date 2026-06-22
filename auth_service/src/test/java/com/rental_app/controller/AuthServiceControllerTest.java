@@ -59,7 +59,7 @@ public class AuthServiceControllerTest {
 
         when(authservice.loginRequest(any(LoginRequestDTO.class))).thenReturn(response);
 
-        mockMvc.perform(post("/auth/login")
+        mockMvc.perform(post("/auth/v1/login")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(payload))
                 .andExpect(status().isOk())
