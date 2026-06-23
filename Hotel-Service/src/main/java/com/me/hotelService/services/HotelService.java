@@ -9,7 +9,7 @@ import com.me.hotelService.entities.Hotel;
 public interface HotelService {
 	
 	public HotelResponseDto creatHotel(HotelRequestDto requestDto);
-	public Hotel getHotelById(String hotelId);
-	public List<Hotel> getListOfHotels();
+	public HotelResponseDto getHotelById(String hotelId);
+	public List<HotelResponseDto> getListOfHotels();
 
 }

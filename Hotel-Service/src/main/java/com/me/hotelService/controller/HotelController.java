@@ -38,12 +38,13 @@ public class HotelController {
 	  
 	  
 	  @GetMapping("/{hotelId}")
-	  public Hotel getHotelById(@PathVariable @NotBlank(message="Hotel id is required") String hotelId) {
+	  public HotelResponseDto getHotelById(@PathVariable @NotBlank(message="Hotel id is required") String hotelId) {
 		  return hotelService.getHotelById(hotelId);
 	  }
 	  
 	  @GetMapping
-	  public List<Hotel> getListOfHotels(){
+	  public List<HotelResponseDto> getListOfHotels(){
+		  // when no hotel data present returning - 200 OK with empty list
 		  return hotelService.getListOfHotels();
 	  }
 	 

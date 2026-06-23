@@ -1,10 +1,13 @@
 package com.me.hotelService.servicesImpl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import com.me.hotelService.dto.HotelRequestDto;
 import com.me.hotelService.dto.HotelResponseDto;
+import com.me.hotelService.exception.customeExceptions.HotelNotFoundException;
 import com.me.hotelService.mapper.HotelMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,24 +29,30 @@ public class HotelServiceImpl implements HotelService{
 
 	@Override
 	public HotelResponseDto creatHotel(HotelRequestDto requestDto) {
-		String hotelId = UUID.randomUUID().toString();
 		Hotel hotel = mapper.toEntity(requestDto);
-		hotel.setHotelId(hotelId);
-		log.info("Hotel repository call to persist hotel details - Hotel ID : {}", hotelId);
+		hotel.setHotelId(UUID.randomUUID().toString());
+		log.info("Hotel repository call to persist hotel details - Hotel ID : {}", hotel.getHotelId());
 		Hotel createHotel = hotelRepository.save(hotel);
-		log.info("Hotel details created with - Hotel ID : {}", hotelId);
+		log.info("Hotel details created with - Hotel ID : {}", hotel.getHotelId());
 		// log.error("Unable to save - throw error with exception and stack trace");
 		return mapper.toResponseDto(createHotel);
 	}
 
 	@Override
-	public Hotel getHotelById(String hotelId) {
-		return hotelRepository.findById(hotelId).get();
+	public HotelResponseDto getHotelById(String hotelId) {
+		Hotel hotel = hotelRepository.findById(hotelId).orElseThrow(() ->
+				new HotelNotFoundException("Hotel not found"));
+		return mapper.toResponseDto(hotel);
 	}
 
 	@Override
-	public List<Hotel> getListOfHotels() {
-		return hotelRepository.findAll();
+	public List<HotelResponseDto> getListOfHotels() {
+		List<Hotel> hotels = hotelRepository.findAll();
+		List<HotelResponseDto> responseHotel = new ArrayList<>();
+		hotels.forEach(hotel ->
+				responseHotel.add(mapper.toResponseDto(hotel)));
+		return responseHotel;
+
 	}
 
 }
